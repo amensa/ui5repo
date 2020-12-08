@@ -7,7 +7,7 @@ sap.ui.define([], function () {
 			var resourceBundle = this.getView().getModel("i18n").getResourceBundle();
 			switch (sStatus) {
 			case "Available":
-				return resourceBundle.getText("Yahoo");
+				return resourceBundle.getText("available");
 			default:
 				return sStatus;
 			}
