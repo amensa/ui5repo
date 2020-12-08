@@ -1,0 +1,53 @@
+<mvc:View controllerName="home.kpmg.Exercise3ResponsiveTable.controller.MainView" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<Panel headerText="{i18n>tablePanelTitle}" class="sapUiResponsiveMargin" width="auto">
+							<Table id="productsList" class="sapUiResponsiveMargin" width="auto" items="{ path: 'productsModel>/ProductCollection' }">
+								<headerToolbar>
+									<Toolbar>
+										<Title text="{i18n>productsListTitle}"/>
+										<ToolbarSpacer/>
+										<SearchField width="50%" search=".onFilterProducts"/>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column hAlign="End" minScreenWidth="Small" demandPopin="true" width="4em">
+										<Text text="{i18n>columnQuantity}"/>
+									</Column>
+									<Column>
+										<Text text="{i18n>columnName}"/>
+									</Column>
+									<Column minScreenWidth="Small" demandPopin="true">
+										<Text text="{i18n>columnStatus}"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="false">
+										<Text text="{i18n>columnSupplier}"/>
+									</Column>
+									<Column hAlign="End">
+										<Text text="{i18n>columnPrice}"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem press=".onPress">
+										<cells >
+											<ObjectNumber number="{productsModel>Quantity}" emphasized="false"/>
+											<ObjectIdentifier title="{productsModel>Name}"/>
+											<Text text="{ path: 'productsModel>Status', formatter: '.formatter.statusText' }"/>
+											<Text text="{productsModel>SupplierName}"/>
+											<ObjectNumber
+												number="{ parts: [{path: 'productsModel>Price'}, {path: 'productsModel>/CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+												unit="{productsModel>/CurrencyCode}" state="{= ${productsModel>Price} > 50 ? 'Error' : 'Success' }"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</Panel>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
