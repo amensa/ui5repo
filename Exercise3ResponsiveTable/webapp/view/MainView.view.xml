@@ -14,7 +14,7 @@
 									</Toolbar>
 								</headerToolbar>
 								<columns>
-									<Column hAlign="End" minScreenWidth="Small" demandPopin="true" width="4em">
+									<Column hAlign="End" minScreenWidth="Small" demandPopin="true" width="5em">
 										<Text text="{i18n>columnQuantity}"/>
 									</Column>
 									<Column>
@@ -29,6 +29,9 @@
 									<Column hAlign="End">
 										<Text text="{i18n>columnPrice}"/>
 									</Column>
+									<Column hAlign="End">
+										<Text text="{i18n>columnTotal}"/>
+									</Column>
 								</columns>
 								<items>
 									<ColumnListItem press=".onPress">
@@ -40,6 +43,7 @@
 											<ObjectNumber
 												number="{ parts: [{path: 'productsModel>Price'}, {path: 'productsModel>/CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
 												unit="{productsModel>/CurrencyCode}" state="{= ${productsModel>Price} > 50 ? 'Error' : 'Success' }"/>
+											<ObjectNumber number="{= Number(${productsModel>Quantity} * ${productsModel>Price}).toFixed(2)}" emphasized="false"/>
 										</cells>
 									</ColumnListItem>
 								</items>
